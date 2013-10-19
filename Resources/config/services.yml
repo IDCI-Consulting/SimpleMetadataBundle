@@ -1,0 +1,20 @@
+services:
+    form.type.custom_json_array:
+        class: IDCI\Bundle\SimpleMetadataBundle\Form\Type\CustomJsonType
+        tags:
+            - { name: form.type, alias: custom_json }
+
+    form.type.json:
+        class: IDCI\Bundle\SimpleMetadataBundle\Form\Type\JsonType
+        tags:
+            - { name: form.type, alias: json }
+
+    form.type.related_to_one_metadata:
+        class: IDCI\Bundle\SimpleMetadataBundle\Form\Type\RelatedToOneMetadataType
+        tags:
+            - { name: form.type, alias: related_to_one_metadata }
+
+    form.type.related_to_many_metadata:
+        class: IDCI\Bundle\SimpleMetadataBundle\Form\Type\RelatedToManyMetadataType
+        tags:
+            - { name: form.type, alias: related_to_many_metadata }

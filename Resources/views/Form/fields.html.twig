@@ -1,0 +1,43 @@
+{% block related_to_many_metadata_widget %}
+    {% spaceless %}
+        {{ block('collection_widget') }}
+    {% endspaceless %}
+
+    <script type="text/javascript">
+        var metadataCollectionHolder = $('.idci_metadata__related_to_many_metadata');
+        var $addMetadataLink = $('<a href="#" class="btn btn-default add_metadata">Add metadata</a>');
+        var $metadataNewLink = $('<div></div>').append($addMetadataLink);
+
+        jQuery(document).ready(function() {
+            metadataCollectionHolder.append($metadataNewLink);
+
+            $addMetadataLink.on('click', function(e) {
+                e.preventDefault();
+                addMetadataForm(metadataCollectionHolder, $metadataNewLink);
+            });
+
+            metadataCollectionHolder.find('.idci_metadata__related_to_one_metadata').each(function() {
+                addMetadataFormDeleteLink($(this));
+            });
+        });
+
+        function addMetadataForm(metadataCollectionHolder, $metadataNewLink) {
+            var prototype = metadataCollectionHolder.attr('data-prototype');
+            var newForm = prototype.replace(/__name__/g, metadataCollectionHolder.children().length);
+            var $newFormDiv = $('<div></div>').append(newForm);
+            $metadataNewLink.before($newFormDiv);
+            addMetadataFormDeleteLink($newFormDiv);
+        }
+
+        function addMetadataFormDeleteLink($metadataFormDiv) {
+            var $removeFormA = $('<a href="#" class="btn btn-default">Delete metadata</a>');
+            $metadataFormDiv.append($removeFormA);
+
+            $removeFormA.on('click', function(e) {
+                e.preventDefault();
+                $metadataFormDiv.remove();
+            });
+        }
+    </script>
+{% endblock %}
+
