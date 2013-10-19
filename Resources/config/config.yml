@@ -1,4 +1,4 @@
 twig:
     form:
         resources:
-            - 'TmsOperationBundle:Form:fields.html.twig'
+            - 'IDCISimpleMetadataBundle:Form:fields.html.twig'

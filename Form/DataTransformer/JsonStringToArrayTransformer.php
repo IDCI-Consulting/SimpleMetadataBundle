@@ -7,7 +7,9 @@
  *
  */
 
-namespace IDCI\Bundle\SimpleMetadataBundle\Form\DataTransformerInterface;
+namespace IDCI\Bundle\SimpleMetadataBundle\Form\DataTransformer;
+
+use Symfony\Component\Form\DataTransformerInterface;
 
 class JsonStringToArrayTransformer implements DataTransformerInterface
 {
