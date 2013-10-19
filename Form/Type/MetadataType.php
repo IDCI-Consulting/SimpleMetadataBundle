@@ -14,7 +14,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use IDCI\Bundle\SimpleMetadataBundle\Form\DataTransformer\ArrayToStringTransformer;
 
-class CustomJsonType extends AbstractType
+class MetadataType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -54,6 +54,6 @@ class CustomJsonType extends AbstractType
      */
     public function getName()
     {
-        return 'custom_json';
+        return 'metadata';
     }
 }

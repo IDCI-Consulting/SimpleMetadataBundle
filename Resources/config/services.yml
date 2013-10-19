@@ -1,13 +1,13 @@
 services:
-    form.type.custom_json_array:
-        class: IDCI\Bundle\SimpleMetadataBundle\Form\Type\CustomJsonType
-        tags:
-            - { name: form.type, alias: custom_json }
-
     form.type.json:
         class: IDCI\Bundle\SimpleMetadataBundle\Form\Type\JsonType
         tags:
             - { name: form.type, alias: json }
+
+    form.type.metadata:
+        class: IDCI\Bundle\SimpleMetadataBundle\Form\Type\MetadataType
+        tags:
+            - { name: form.type, alias: metadata }
 
     form.type.related_to_one_metadata:
         class: IDCI\Bundle\SimpleMetadataBundle\Form\Type\RelatedToOneMetadataType
