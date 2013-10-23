@@ -19,21 +19,38 @@ class RelatedToManyMetadataType extends AbstractType
     /**
      * {@inheritdoc}
      */
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        if (isset($options['namespace'])) {
+            $builder->setData(array(
+                'namespace' => $options['namespace']
+            ));
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $resolver->setDefaults(array(
-            'type' => 'related_to_one_metadata',
-            'options' => array(
-                'required' => false
-            ),
-            'allow_add' => true,
-            'allow_delete' => true,
-            'by_reference' => false,
-            'cascade_validation' => true,
-            'attr' => array(
-                'class' => sprintf('idci_metadata__%s', $this->getName())
-            )
-        ));
+        $resolver
+            ->setDefaults(array(
+                'type' => 'related_to_one_metadata',
+                'options' => array(
+                    'required' => false
+                ),
+                'allow_add' => true,
+                'allow_delete' => true,
+                'by_reference' => false,
+                'cascade_validation' => true,
+                'attr' => array(
+                    'class' => sprintf('idci_metadata__%s', $this->getName())
+                )
+            ))
+            ->setOptional(array(
+                'namespace'
+            ))
+        ;
     }
 
     /**

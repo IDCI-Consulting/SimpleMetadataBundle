@@ -20,8 +20,13 @@ class MetadataType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        if (!isset($options['namespace'])) {
+            $builder->add('namespace');
+        } else {
+            $builder->add('namespace', 'hidden', array('data' => $options['namespace']));
+        }
+
         $builder
-            ->add('namespace')
             ->add('key')
             ->add('value')
         ;
@@ -38,6 +43,9 @@ class MetadataType extends AbstractType
                 'attr'        => array(
                     'class'   => sprintf('idci_metadata__%s', $this->getName())
                 )
+            ))
+            ->setOptional(array(
+                'namespace'
             ))
         ;
     }
