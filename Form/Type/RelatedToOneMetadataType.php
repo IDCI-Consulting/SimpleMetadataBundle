@@ -11,12 +11,13 @@ namespace IDCI\Bundle\SimpleMetadataBundle\Form\Type;
 
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use IDCI\Bundle\SimpleMetadataBundle\Metadata\MetadataManager;
 use IDCI\Bundle\SimpleMetadataBundle\Form\MetadataType;
 
 class RelatedToOneMetadataType extends MetadataType
 {
     /**
-     * @param OptionsResolverInterface $resolver
+     * {@inheritdoc}
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
@@ -25,7 +26,7 @@ class RelatedToOneMetadataType extends MetadataType
             'cascade_validation' => true,
             'attr' => array(
                 'class' => sprintf('idci_metadata__%s', $this->getName())
-            ),
+            )
         ));
     }
 

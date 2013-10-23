@@ -1,4 +1,7 @@
 services:
+
+    # FormType
+
     form.type.json:
         class: IDCI\Bundle\SimpleMetadataBundle\Form\Type\JsonType
         tags:
@@ -18,3 +21,20 @@ services:
         class: IDCI\Bundle\SimpleMetadataBundle\Form\Type\RelatedToManyMetadataType
         tags:
             - { name: form.type, alias: related_to_many_metadata }
+
+    ## Doctrine Subscriber ##
+
+    idci_simple_metadata.subscriber:
+        class: IDCI\Bundle\SimpleMetadataBundle\Metadata\MetadataSubscriber
+        arguments: [@idci_simple_metadata.metadatable_manager]
+        tags:
+            - { name: doctrine.event_subscriber, connection: default }
+
+    ## Manager ##
+
+    idci_simple_metadata.metadatable_manager:
+        class: IDCI\Bundle\SimpleMetadataBundle\Metadata\MetadatableManager
+
+    idci_simple_metadata.metadata_manager:
+        class: IDCI\Bundle\SimpleMetadataBundle\Metadata\MetadataManager
+        arguments: [@doctrine.orm.entity_manager]

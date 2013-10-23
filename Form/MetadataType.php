@@ -21,6 +21,7 @@ class MetadataType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('namespace')
             ->add('key')
             ->add('value')
         ;
@@ -31,12 +32,14 @@ class MetadataType extends AbstractType
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $resolver->setDefaults(array(
-            'data_class' => 'IDCI\Bundle\SimpleMetadataBundle\Entity\Metadata',
-            'attr' => array(
-                'class' => sprintf('idci_metadata__%s', $this->getName())
-            )
-        ));
+        $resolver
+            ->setDefaults(array(
+                'data_class'  => 'IDCI\Bundle\SimpleMetadataBundle\Entity\Metadata',
+                'attr'        => array(
+                    'class'   => sprintf('idci_metadata__%s', $this->getName())
+                )
+            ))
+        ;
     }
 
     /**
