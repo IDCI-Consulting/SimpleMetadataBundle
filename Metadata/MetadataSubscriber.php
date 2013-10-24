@@ -11,6 +11,7 @@ namespace IDCI\Bundle\SimpleMetadataBundle\Metadata;
 
 use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Event\LifecycleEventArgs;
+use Doctrine\ORM\EntityManager;
 use IDCI\Bundle\SimpleMetadataBundle\Entity\Metadata;
 use IDCI\Bundle\SimpleMetadataBundle\Metadata\MetadatableManager;
 use IDCI\Bundle\SimpleMetadataBundle\Metadata\MetadatableInterface;
@@ -45,25 +46,9 @@ class MetadataSubscriber implements EventSubscriber
     public function getSubscribedEvents()
     {
         return array(
-            'prePersist',
-            'preUpdate',
             'postPersist',
             'postUpdate',
         );
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function prePersist(LifecycleEventArgs $args)
-    {
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function preUpdate(LifecycleEventArgs $args)
-    {
     }
 
     /**
@@ -73,7 +58,7 @@ class MetadataSubscriber implements EventSubscriber
     {
         $entity = $args->getEntity();
         if ($entity instanceof MetadatableInterface) {
-            $this->processMetadata($entity);
+            $this->processMetadata($entity, $args->getEntityManager());
         }
     }
 
@@ -84,11 +69,11 @@ class MetadataSubscriber implements EventSubscriber
     {
         $entity = $args->getEntity();
         if ($entity instanceof MetadatableInterface) {
-            $this->processMetadata($entity);
+            $this->processMetadata($entity, $args->getEntityManager());
         }
     }
 
-    protected function processMetadata(MetadatableInterface $entity)
+    protected function processMetadata(MetadatableInterface $entity, EntityManager $entityManager)
     {
         foreach ($entity->getMetadatas() as $metadata) {
             if($metadata instanceof Metadata) {
@@ -97,7 +82,9 @@ class MetadataSubscriber implements EventSubscriber
                     ->setObjectClassName($this->getMetadatableManager()->getObjectClassName($entity))
                     ->setObjectId($this->getMetadatableManager()->getObjectId($entity))
                 ;
+                $entityManager->persist($metadata);
             }
         }
+        $entityManager->flush();
     }
 }
