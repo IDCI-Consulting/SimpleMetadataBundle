@@ -91,11 +91,13 @@ class MetadataSubscriber implements EventSubscriber
     protected function processMetadata(MetadatableInterface $entity)
     {
         foreach ($entity->getMetadatas() as $metadata) {
-            $metadata
-                ->setHash($this->getMetadatableManager()->generateHash($entity))
-                ->setObjectClassName($this->getMetadatableManager()->getObjectClassName($entity))
-                ->setObjectId($this->getMetadatableManager()->getObjectId($entity))
-            ;
+            if($metadata instanceof Metadata) {
+                $metadata
+                    ->setHash($this->getMetadatableManager()->generateHash($entity))
+                    ->setObjectClassName($this->getMetadatableManager()->getObjectClassName($entity))
+                    ->setObjectId($this->getMetadatableManager()->getObjectId($entity))
+                ;
+            }
         }
     }
 }

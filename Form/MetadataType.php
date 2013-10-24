@@ -39,10 +39,7 @@ class MetadataType extends AbstractType
     {
         $resolver
             ->setDefaults(array(
-                'data_class'  => 'IDCI\Bundle\SimpleMetadataBundle\Entity\Metadata',
-                'attr'        => array(
-                    'class'   => sprintf('idci_metadata__%s', $this->getName())
-                )
+                'data_class' => 'IDCI\Bundle\SimpleMetadataBundle\Entity\Metadata'
             ))
             ->setOptional(array(
                 'namespace'

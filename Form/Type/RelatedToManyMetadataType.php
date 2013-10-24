@@ -16,16 +16,16 @@ use IDCI\Bundle\SimpleMetadataBundle\Form\MetadataType;
 
 class RelatedToManyMetadataType extends AbstractType
 {
+    protected $namespace;
+
     /**
-     * {@inheritdoc}
+     * Constructor
+     *
+     * @param string $namespace
      */
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function __construct($namespace = null)
     {
-        if (isset($options['namespace'])) {
-            $builder->setData(array(
-                'namespace' => $options['namespace']
-            ));
-        }
+        $this->namespace = $namespace;
     }
 
     /**
@@ -33,24 +33,21 @@ class RelatedToManyMetadataType extends AbstractType
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $resolver
-            ->setDefaults(array(
-                'type' => 'related_to_one_metadata',
-                'options' => array(
-                    'required' => false
-                ),
-                'allow_add' => true,
-                'allow_delete' => true,
-                'by_reference' => false,
-                'cascade_validation' => true,
-                'attr' => array(
-                    'class' => sprintf('idci_metadata__%s', $this->getName())
-                )
-            ))
-            ->setOptional(array(
-                'namespace'
-            ))
-        ;
+        $resolver->setDefaults(array(
+            'type' => 'related_to_one_metadata',
+            'options' => array(
+                'required' => false,
+                'namespace' => $this->namespace
+            ),
+            'allow_add' => true,
+            'allow_delete' => true,
+            'by_reference' => false,
+            'cascade_validation' => true,
+            'attr' => array(
+                'class' => 'idci_metadata__related_to_many_metadata',
+                'data-namespace' => $this->namespace
+            )
+        ));
     }
 
     /**
@@ -66,6 +63,10 @@ class RelatedToManyMetadataType extends AbstractType
      */
     public function getName()
     {
+        if ($this->namespace) {
+            return sprintf('related_to_many_metadata_%s', $this->namespace);
+        }
+
         return 'related_to_many_metadata';
     }
 }

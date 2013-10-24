@@ -16,6 +16,18 @@ use IDCI\Bundle\SimpleMetadataBundle\Form\MetadataType;
 
 class RelatedToOneMetadataType extends MetadataType
 {
+    protected $namespace;
+
+    /**
+     * Constructor
+     *
+     * @param string $namespace
+     */
+    public function __construct($namespace = null)
+    {
+        $this->namespace = $namespace;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -25,9 +37,14 @@ class RelatedToOneMetadataType extends MetadataType
         $resolver->setDefaults(array(
             'cascade_validation' => true,
             'attr' => array(
-                'class' => sprintf('idci_metadata__%s', $this->getName())
+                'class' => 'idci_metadata__related_to_one_metadata',
+                'data-namespace' => $this->namespace
             )
         ));
+
+        if ($this->namespace) {
+            $resolver->setDefaults(array('namespace' => $this->namespace));
+        }
     }
 
     /**
@@ -35,6 +52,10 @@ class RelatedToOneMetadataType extends MetadataType
      */
     public function getName()
     {
+        if ($this->namespace) {
+            return sprintf('related_to_one_metadata_%s', $this->namespace);
+        }
+
         return 'related_to_one_metadata';
     }
 }
