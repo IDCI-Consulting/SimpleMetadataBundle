@@ -48,7 +48,7 @@ class Metadata
     /**
      * @var string
      *
-     * @ORM\Column(name="_value", type="string", length=255)
+     * @ORM\Column(name="_value", type="string", length=255, nullable=true)
      */
     private $value;
 
