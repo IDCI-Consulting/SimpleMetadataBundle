@@ -138,4 +138,65 @@ public function buildForm(FormBuilderInterface $builder, array $options)
 }
 ```
 
-TODO: Explain how create pre defined forms
+
+Advanced form usage
+-------------------
+
+The `metadata` form type accept a `fields` options
+ex:
+
+```php
+    $builder
+        ...
+        ->add('metadata', 'metadata', array(
+            'fields' => array(
+                'firstName' => array('text'),
+                'lastName' => array('text'),
+                'address' => array('text'),
+                'city' => array('text'),
+                'country' => array('text'),
+                'message' => array('textarea')
+            )
+        ))
+        ...
+    ;
+```
+
+This bundle provide a `json` form type which is realy usefull to store a json
+(must be used on a Text mapped field).
+
+
+Custom namespace
+----------------
+
+You can create your own namespace, without asking it in the form.
+
+First declare them like this:
+
+```yml
+idci_simple_metadata:
+    namespaces: [tags, features]
+```
+
+If you take a look at the `container:debug` you will see that new form type are now available:
+
+```sh
+$ php app/console container:debug
+...
+form.type.form.type.related_to_one_metadata_features               container IDCI\Bundle\SimpleMetadataBundle\Form\Type\RelatedToOneMetadataType
+form.type.form.type.related_to_one_metadata_tags                   container IDCI\Bundle\SimpleMetadataBundle\Form\Type\RelatedToOneMetadataType
+form.type.related_to_many_metadata_features                        container IDCI\Bundle\SimpleMetadataBundle\Form\Type\RelatedToManyMetadataType
+form.type.related_to_many_metadata_tags                            container IDCI\Bundle\SimpleMetadataBundle\Form\Type\RelatedToManyMetadataType
+...
+```
+
+simply use them in your form builder:
+
+```php
+    $builder
+        ...
+        ->add('features', 'related_to_many_metadata_features')
+        ->add('tags', 'related_to_many_metadata_tags')
+        ...
+    ;
+```
