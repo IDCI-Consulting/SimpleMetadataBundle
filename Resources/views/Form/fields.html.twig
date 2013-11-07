@@ -4,7 +4,7 @@
     {% endif %}
     {{ block('form_widget') }}
 
-    {% if attr.class == "idci_metadata__related_to_many_metadata" %}
+    {% if attr.class is defined attr.class == "idci_metadata__related_to_many_metadata" %}
         {% set namespace = attr['data-namespace'] %}
         <script type="text/javascript">
             var metadataCollectionHolder_{{ namespace }} = $('.idci_metadata__related_to_many_metadata[data-namespace="{{ namespace }}"]');
