@@ -31,12 +31,16 @@ class JsonStringToArrayTransformer implements DataTransformerInterface
     /**
      * Transforms a json string to array.
      *
-     * @param string $str
+     * @param string|array $json
      * @return array
      */
-    public function reverseTransform($str)
+    public function reverseTransform($json)
     {
-        return json_decode($str, true);
+        if (is_array($json)) {
+            return $json;
+        }
+
+        return json_decode($json, true);
     }
 }
 
