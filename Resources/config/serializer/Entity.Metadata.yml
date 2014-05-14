@@ -1,0 +1,39 @@
+IDCI\Bundle\SimpleMetadataBundle\Entity\Metadata:
+    exclusion_policy: ALL
+
+    properties:
+        id:
+            expose: true
+            groups: [list, details]
+
+        namespace:
+            expose: true
+            groups: [list, details]
+
+        key:
+            expose: true
+            groups: [list, details]
+
+        value:
+            expose: true
+            groups: [list, details]
+
+        hash:
+            expose: true
+            groups: [list, details]
+
+        objectClassName:
+            expose: true
+            groups: [list, details]
+
+        objectId:
+            expose: true
+            groups: [list, details]
+
+        createdAt:
+            expose: true
+            groups: [list, details]
+
+        updatedAt:
+            expose: true
+            groups: [list, details]
