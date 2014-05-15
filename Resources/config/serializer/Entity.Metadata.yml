@@ -4,7 +4,7 @@ IDCI\Bundle\SimpleMetadataBundle\Entity\Metadata:
     properties:
         id:
             expose: true
-            groups: [list, details]
+            groups: [details]
 
         namespace:
             expose: true
@@ -20,20 +20,12 @@ IDCI\Bundle\SimpleMetadataBundle\Entity\Metadata:
 
         hash:
             expose: true
-            groups: [list, details]
+            groups: [details]
 
         objectClassName:
             expose: true
-            groups: [list, details]
+            groups: [details]
 
         objectId:
             expose: true
-            groups: [list, details]
-
-        createdAt:
-            expose: true
-            groups: [list, details]
-
-        updatedAt:
-            expose: true
-            groups: [list, details]
+            groups: [details]
