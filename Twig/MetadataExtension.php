@@ -1,8 +1,9 @@
 <?php
 
-namespace Tms\WebAdminBundle\Twig;
+namespace IDCI\Bundle\SimpleMetadataBundle\Twig;
 
-use IDCI\Bundle\SimpleMetadataBundle\Metadata\MetadataManager
+use IDCI\Bundle\SimpleMetadataBundle\Metadata\MetadataManager;
+use IDCI\Bundle\SimpleMetadataBundle\Metadata\MetadatableInterface;
 
 
 /**
@@ -39,7 +40,7 @@ class MetadataExtension extends \Twig_Extension
      */
     public function getName()
     {
-        return 'tms_metadata_extension';
+        return 'idci_metadata_extension';
     }
 
     /**
@@ -65,7 +66,11 @@ class MetadataExtension extends \Twig_Extension
         return $this
             ->getMetadataManager()
             ->getEntityManager()
-            ->getMetadataByNamespaceAndKey($namespace, $key)
+            ->getRepository('IDCISimpleMetadataBundle:Metadata')
+            ->findOneBy(array(
+                'namespace' => $namespace,
+                'key' => $key
+            ))
         ;
     }
 }
