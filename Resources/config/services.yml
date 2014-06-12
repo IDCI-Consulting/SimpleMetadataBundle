@@ -1,5 +1,6 @@
 services:
 
+
     # FormType
 
     form.type.json:
@@ -24,6 +25,7 @@ services:
         tags:
             - { name: form.type, alias: related_to_many_metadata }
 
+
     ## Doctrine Subscriber ##
 
     idci_simple_metadata.subscriber:
@@ -31,6 +33,7 @@ services:
         arguments: [@idci_simple_metadata.metadatable_manager]
         tags:
             - { name: doctrine.event_subscriber, connection: default }
+
 
     ## Manager ##
 
@@ -40,3 +43,12 @@ services:
     idci_simple_metadata.metadata_manager:
         class: IDCI\Bundle\SimpleMetadataBundle\Metadata\MetadataManager
         arguments: [@doctrine.orm.entity_manager]
+
+
+    ## Twig Extensions ##
+
+    idci_simple_metadata.twig.metadata_extension:
+        class: IDCI\Bundle\SimpleMetadataBundle\Twig\MetadataExtension
+        arguments: [@idci_simple_metadata.metadata_manager]
+        tags:
+            - { name: twig.extension }
