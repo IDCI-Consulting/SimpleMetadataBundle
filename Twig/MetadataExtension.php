@@ -25,6 +25,7 @@ class MetadataExtension extends \Twig_Extension
     public function __construct(MetadataManager $metadataManager, MetadatableManager $metadatableManager)
     {
         $this->metadataManager = $metadataManager;
+        $this->metadatableManager = $metadatableManager;
     }
 
     /**
@@ -35,6 +36,16 @@ class MetadataExtension extends \Twig_Extension
     public function getMetadataManager()
     {
         return $this->metadataManager;
+    }
+
+    /**
+     * Get Metadatable Object Manager
+     *
+     * @return MetadatableManager
+     */
+    public function getMetadatableManager()
+    {
+        return $this->metadatableManager;
     }
 
     /**
@@ -72,7 +83,7 @@ class MetadataExtension extends \Twig_Extension
             ->findOneBy(array(
                 'namespace' => $namespace,
                 'key' => $key,
-                'hash' => $this->metadatableManager->generateHash($object)
+                'hash' => $this->getMetadatableManager()->generateHash($object)
             ))
             ->getValue()
         ;
