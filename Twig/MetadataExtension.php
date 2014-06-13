@@ -3,6 +3,7 @@
 namespace IDCI\Bundle\SimpleMetadataBundle\Twig;
 
 use IDCI\Bundle\SimpleMetadataBundle\Metadata\MetadataManager;
+use IDCI\Bundle\SimpleMetadataBundle\Metadata\MetadatableManager;
 use IDCI\Bundle\SimpleMetadataBundle\Metadata\MetadatableInterface;
 
 
@@ -14,13 +15,14 @@ use IDCI\Bundle\SimpleMetadataBundle\Metadata\MetadatableInterface;
 class MetadataExtension extends \Twig_Extension
 {
     protected $metadataManager;
+    protected $metadatableManager;
 
     /**
      * Constructor
      *
      * @param MetadataManager $metadataManager
      */
-    public function __construct(MetadataManager $metadataManager)
+    public function __construct(MetadataManager $metadataManager, MetadatableManager $metadatableManager)
     {
         $this->metadataManager = $metadataManager;
     }
@@ -69,8 +71,10 @@ class MetadataExtension extends \Twig_Extension
             ->getRepository('IDCISimpleMetadataBundle:Metadata')
             ->findOneBy(array(
                 'namespace' => $namespace,
-                'key' => $key
+                'key' => $key,
+                'hash' => $this->metadatableManager->generateHash($object)
             ))
+            ->getValue()
         ;
     }
 }

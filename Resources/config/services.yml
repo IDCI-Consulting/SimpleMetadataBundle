@@ -1,6 +1,4 @@
 services:
-
-
     # FormType
 
     form.type.json:
@@ -49,6 +47,6 @@ services:
 
     idci_simple_metadata.twig.metadata_extension:
         class: IDCI\Bundle\SimpleMetadataBundle\Twig\MetadataExtension
-        arguments: [@idci_simple_metadata.metadata_manager]
+        arguments: [@idci_simple_metadata.metadata_manager, @idci_simple_metadata.metadatable_manager]
         tags:
             - { name: twig.extension }
