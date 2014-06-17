@@ -40,7 +40,7 @@ services:
 
     idci_simple_metadata.metadata_manager:
         class: IDCI\Bundle\SimpleMetadataBundle\Metadata\MetadataManager
-        arguments: [@doctrine.orm.entity_manager]
+        arguments: [@idci_simple_metadata.metadatable_manager, @doctrine.orm.entity_manager]
 
 
     ## Twig Extensions ##

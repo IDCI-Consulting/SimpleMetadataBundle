@@ -69,23 +69,13 @@ class MetadataExtension extends \Twig_Extension
     /**
      * metadata value
      *
-     * @param  object $object
-     * @param  string $namespace
-     * @param  string $key
-     * @return string The metadata value
+     * @param  MetadatableInterface $object
+     * @param  string               $namespace
+     * @param  string               $key
+     * @return string | null        The metadata value
      */
     public function metadata(MetadatableInterface $object, $namespace, $key)
     {
-        return $this
-            ->getMetadataManager()
-            ->getEntityManager()
-            ->getRepository('IDCISimpleMetadataBundle:Metadata')
-            ->findOneBy(array(
-                'namespace' => $namespace,
-                'key' => $key,
-                'hash' => $this->getMetadatableManager()->generateHash($object)
-            ))
-            ->getValue()
-        ;
+        return $this->getMetadataManager()->getValue($object, $namespace, $key);
     }
 }
