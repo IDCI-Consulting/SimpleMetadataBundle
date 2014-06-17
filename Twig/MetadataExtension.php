@@ -1,17 +1,19 @@
 <?php
 
+/**
+ * 
+ * @author:  Gabriel BONDAZ <gabriel.bondaz@idci-consulting.fr>
+ * @author:  Julien ANDRE <j.andre@trepia.fr>
+ * @license: GPL
+ *
+ */
+
 namespace IDCI\Bundle\SimpleMetadataBundle\Twig;
 
 use IDCI\Bundle\SimpleMetadataBundle\Metadata\MetadataManager;
 use IDCI\Bundle\SimpleMetadataBundle\Metadata\MetadatableManager;
 use IDCI\Bundle\SimpleMetadataBundle\Metadata\MetadatableInterface;
 
-
-/**
- * MetadataExtension
- *
- * @author Julien ANDRE <j.andre@trepia.fr>
- */
 class MetadataExtension extends \Twig_Extension
 {
     protected $metadataManager;
