@@ -104,7 +104,7 @@ class MetadataManager
      * @param  MetadatableInterface $object
      * @param  string               $namespace
      * @param  string               $key
-     * @return array
+     * @return IDCI\Bundle\SimpleMetadataBundle\Entity\Metadata | null
      */
     public function get(MetadatableInterface $object, $namespace, $key)
     {
