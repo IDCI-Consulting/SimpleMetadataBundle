@@ -4,28 +4,28 @@ IDCI\Bundle\SimpleMetadataBundle\Entity\Metadata:
     properties:
         id:
             expose: true
-            groups: [details]
+            groups: [tms_rest.item]
 
         namespace:
             expose: true
-            groups: [list, details]
+            groups: [tms_rest.collection, tms_rest.item]
 
         key:
             expose: true
-            groups: [list, details]
+            groups: [tms_rest.collection, tms_rest.item]
 
         value:
             expose: true
-            groups: [list, details]
+            groups: [tms_rest.collection, tms_rest.item]
 
         hash:
             expose: true
-            groups: [details]
+            groups: [tms_rest.item]
 
         objectClassName:
             expose: true
-            groups: [details]
+            groups: [tms_rest.item]
 
         objectId:
             expose: true
-            groups: [details]
+            groups: [tms_rest.item]
