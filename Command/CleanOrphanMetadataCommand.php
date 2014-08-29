@@ -56,12 +56,18 @@ EOT
         $output->writeln(sprintf('<info>Beginning of the Metadata Cleaning</info>'));
 
         foreach ($metadatas as $metadata) {
-            $object = $em
-                ->getRepository($metadata->getObjectClassName())
-                ->findOneBy(array(
-                    'id' => $metadata->getObjectId()
-                ))
-            ;
+            $object = null;
+            try {
+                $object = $em
+                    ->getRepository($metadata->getObjectClassName())
+                    ->findOneBy(array(
+                        'id' => $metadata->getObjectId()
+                    ))
+                ;
+            } catch(\Exception $e) {
+                $object = null;
+            }
+
             if (null === $object) {
                 $output->writeln(sprintf('<info>Metadata %d has no associated object [%s, %d]</info>',
                     $metadata->getId(),
