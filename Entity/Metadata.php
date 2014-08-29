@@ -124,7 +124,6 @@ class Metadata
         return $this->id;
     }
 
-
     /**
      * Set namespace
      *

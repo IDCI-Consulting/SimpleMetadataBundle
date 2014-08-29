@@ -48,7 +48,30 @@ class MetadataSubscriber implements EventSubscriber
         return array(
             'postPersist',
             'postUpdate',
+            // Already manage with the cascade={"all"} on the ManyToMany relation
+            //'postRemove'
         );
+    }
+
+    /**
+     * Process metadata
+     *
+     * @param MetadatableInterface $entity
+     * @param EntityManager $entityManager
+     */
+    protected function processMetadata(MetadatableInterface $entity, EntityManager $entityManager)
+    {
+        foreach ($entity->getMetadatas() as $metadata) {
+            if($metadata instanceof Metadata) {
+                $metadata
+                    ->setHash($this->getMetadatableManager()->generateHash($entity))
+                    ->setObjectClassName($this->getMetadatableManager()->getObjectClassName($entity))
+                    ->setObjectId($this->getMetadatableManager()->getObjectId($entity))
+                ;
+                $entityManager->persist($metadata);
+            }
+        }
+        $entityManager->flush();
     }
 
     /**
@@ -73,18 +96,27 @@ class MetadataSubscriber implements EventSubscriber
         }
     }
 
-    protected function processMetadata(MetadatableInterface $entity, EntityManager $entityManager)
+    /**
+     * {@inheritdoc}
+     */
+    public function postRemove(LifecycleEventArgs $args)
     {
-        foreach ($entity->getMetadatas() as $metadata) {
-            if($metadata instanceof Metadata) {
-                $metadata
-                    ->setHash($this->getMetadatableManager()->generateHash($entity))
-                    ->setObjectClassName($this->getMetadatableManager()->getObjectClassName($entity))
-                    ->setObjectId($this->getMetadatableManager()->getObjectId($entity))
-                ;
-                $entityManager->persist($metadata);
+        $entity = $args->getEntity();
+        $entityManager = $args->getEntityManager();
+
+        if ($entity instanceof MetadatableInterface) {
+            $metadatas = $entityManager
+                ->getRepository('IDCISimpleMetadataBundle:Metadata')
+                ->findBy(array(
+                    'hash' => $this->getMetadatableManager()->generateHash($entity)
+                ))
+            ;
+
+            foreach($metadatas as $metadata) {
+                $entityManager->remove($metadata);
             }
+
+            $entityManager->flush();
         }
-        $entityManager->flush();
     }
 }
