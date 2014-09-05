@@ -15,6 +15,7 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use Doctrine\Bundle\DoctrineBundle\Command\Proxy\DoctrineCommandHelper;
 
 class CleanOrphanMetadataCommand extends ContainerAwareCommand
 {
@@ -24,16 +25,18 @@ class CleanOrphanMetadataCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setName('idci:cleanup:metadata')
+            ->setName('idci:metadata:clean-orphan')
             ->setDescription('Clean orphans metadata without associated Object')
             ->addOption('force', 'f', InputOption::VALUE_NONE, 'if present the orphan metadatas will be removed')
-            ->addOption('em', null, InputOption::VALUE_REQUIRED, 'The entity manager to use for this command')
+            ->addOption('em', null, InputOption::VALUE_OPTIONAL, 'The entity manager to use for this command', 'default')
             ->setHelp(<<<EOT
 The <info>%command.name%</info> command.
 
-<info>php app/console %command.name% </info>
+To list all orphan metadata:
 
-Alternatively, you can clean the orphan metadatas:
+<info>php app/console %command.name%</info>
+
+To clean the orphan metadata:
 
 <info>php app/console %command.name% --force|-f</info>
 
@@ -50,15 +53,19 @@ EOT
         $count = 0;
         $rcount = 0;
 
-        $em = $this->getContainer()->get('doctrine.orm.entity_manager');
-        $metadatas = $em->getRepository('IDCISimpleMetadataBundle:Metadata')->findAll();
+        DoctrineCommandHelper::setApplicationEntityManager(
+            $this->getApplication(),
+            $input->getOption('em')
+        );
+        $entityManager = $this->getContainer()->get('doctrine')->getManager();
+        $metadatas = $entityManager->getRepository('IDCISimpleMetadataBundle:Metadata')->findAll();
 
         $output->writeln(sprintf('<info>Beginning of the Metadata Cleaning</info>'));
 
         foreach ($metadatas as $metadata) {
             $object = null;
             try {
-                $object = $em
+                $object = $entityManager
                     ->getRepository($metadata->getObjectClassName())
                     ->findOneBy(array(
                         'id' => $metadata->getObjectId()
@@ -76,8 +83,8 @@ EOT
                 ));
 
                 if ($input->getOption('force')) {
-                    $em->remove($metadata);
-                    $em->flush();
+                    $entityManager->remove($metadata);
+                    $entityManager->flush();
                     $rcount++;
                 }
             }
