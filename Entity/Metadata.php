@@ -266,4 +266,17 @@ class Metadata
     {
         return $this->objectId;
     }
+
+    /**
+     * Returns a Key/Value string.
+     *
+     * @return string
+     */
+    public function getKeyValue()
+    {
+        return sprintf('%s/%s',
+            $this->getKey(),
+            $this->getValue()
+        );
+    }
 }
