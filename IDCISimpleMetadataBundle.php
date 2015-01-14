@@ -1,10 +1,8 @@
 <?php
 
 /**
- * 
  * @author:  Gabriel BONDAZ <gabriel.bondaz@idci-consulting.fr>
- * @license: GPL
- *
+ * @license: MIT
  */
 
 namespace IDCI\Bundle\SimpleMetadataBundle;
@@ -15,6 +13,9 @@ use IDCI\Bundle\SimpleMetadataBundle\DependencyInjection\Compiler\MetadataNamesp
 
 class IDCISimpleMetadataBundle extends Bundle
 {
+    /**
+     * {@inheritdoc}
+     */
     public function build(ContainerBuilder $container)
     {
         parent::build($container);
