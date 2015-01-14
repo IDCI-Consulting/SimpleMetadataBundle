@@ -1,10 +1,8 @@
 <?php
 
 /**
- * 
  * @author:  Gabriel BONDAZ <gabriel.bondaz@idci-consulting.fr>
- * @license: GPL
- *
+ * @license: MIT
  */
 
 namespace IDCI\Bundle\SimpleMetadataBundle\Entity;
@@ -92,7 +90,7 @@ class Metadata
     }
 
     /**
-     * Get Object
+     * Get Object.
      *
      * @return MetadatableInterface
      */
@@ -102,9 +100,10 @@ class Metadata
     }
 
     /**
-     * Set Object
+     * Set Object.
      *
      * @param MetadatableInterface $object
+     *
      * @return Website
      */
     public function setObject(MetadatableInterface $object)
@@ -115,9 +114,9 @@ class Metadata
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -125,22 +124,23 @@ class Metadata
     }
 
     /**
-     * Set namespace
+     * Set namespace.
      *
      * @param string $namespace
+     *
      * @return Metadata
      */
     public function setNamespace($namespace)
     {
         $this->namespace = $namespace;
-    
+
         return $this;
     }
 
     /**
-     * Get namespace
+     * Get namespace.
      *
-     * @return string 
+     * @return string
      */
     public function getNamespace()
     {
@@ -148,22 +148,23 @@ class Metadata
     }
 
     /**
-     * Set key
+     * Set key.
      *
      * @param string $key
+     *
      * @return Metadata
      */
     public function setKey($key)
     {
         $this->key = $key;
-    
+
         return $this;
     }
 
     /**
-     * Get key
+     * Get key.
      *
-     * @return string 
+     * @return string
      */
     public function getKey()
     {
@@ -171,22 +172,23 @@ class Metadata
     }
 
     /**
-     * Set value
+     * Set value.
      *
      * @param string $value
+     *
      * @return Metadata
      */
     public function setValue($value)
     {
         $this->value = $value;
-    
+
         return $this;
     }
 
     /**
-     * Get value
+     * Get value.
      *
-     * @return string 
+     * @return string
      */
     public function getValue()
     {
@@ -194,22 +196,23 @@ class Metadata
     }
 
     /**
-     * Set hash
+     * Set hash.
      *
      * @param string $hash
+     *
      * @return Metadata
      */
     public function setHash($hash)
     {
         $this->hash = $hash;
-    
+
         return $this;
     }
 
     /**
-     * Get hash
+     * Get hash.
      *
-     * @return string 
+     * @return string
      */
     public function getHash()
     {
@@ -217,20 +220,21 @@ class Metadata
     }
 
     /**
-     * Set objectClassName
+     * Set objectClassName.
      *
      * @param string $objectClassName
+     *
      * @return Metadata
      */
     public function setObjectClassName($objectClassName)
     {
         $this->objectClassName = $objectClassName;
-    
+
         return $this;
     }
 
     /**
-     * Get objectClassName
+     * Get objectClassName.
      *
      * @return string 
      */
@@ -240,22 +244,23 @@ class Metadata
     }
 
     /**
-     * Set objectId
+     * Set objectId.
      *
      * @param string $objectId
+     *
      * @return Metadata
      */
     public function setObjectId($objectId)
     {
         $this->objectId = $objectId;
-    
+
         return $this;
     }
 
     /**
-     * Get objectId
+     * Get objectId.
      *
-     * @return string 
+     * @return string
      */
     public function getObjectId()
     {

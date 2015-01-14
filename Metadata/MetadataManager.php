@@ -1,10 +1,8 @@
 <?php
 
 /**
- * 
  * @author:  Gabriel BONDAZ <gabriel.bondaz@idci-consulting.fr>
- * @license: GPL
- *
+ * @license: MIT
  */
 
 namespace IDCI\Bundle\SimpleMetadataBundle\Metadata;
@@ -17,7 +15,7 @@ class MetadataManager
     protected $entityManager;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param MetadatableManager $metadatableManager
      * @param EntityManager      $entityManager
@@ -29,7 +27,7 @@ class MetadataManager
     }
 
     /**
-     * Get MetadatableManager
+     * Get MetadatableManager.
      *
      * @return MetadatableManager
      */
@@ -39,7 +37,7 @@ class MetadataManager
     }
 
     /**
-     * Get EntityManager
+     * Get EntityManager.
      *
      * @return EntityManager
      */
@@ -49,7 +47,7 @@ class MetadataManager
     }
 
     /**
-     * Get Repository
+     * Get Repository.
      *
      * @return \Doctrine\ORM\EntityManager\EntityRepository
      */
@@ -62,8 +60,8 @@ class MetadataManager
     }
 
     /**
-     * Magic call
-     * Triger to repository methods call
+     * Magic call.
+     * Triger to repository methods call.
      */
     public function __call($method, $args)
     {
@@ -71,9 +69,10 @@ class MetadataManager
     }
 
     /**
-     * Get all metadata related to an object
+     * Get all metadata related to an object.
      *
      * @param  MetadatableInterface $object
+     *
      * @return array
      */
     public function getAll(MetadatableInterface $object)
@@ -84,10 +83,11 @@ class MetadataManager
     }
 
     /**
-     * Get all metadata related to an object and a namespace
+     * Get all metadata related to an object and a namespace.
      *
      * @param  MetadatableInterface $object
      * @param  string               $namespace
+     *
      * @return array
      */
     public function getNamespaced(MetadatableInterface $object, $namespace)
@@ -99,11 +99,12 @@ class MetadataManager
     }
 
     /**
-     * Get metadata related to an object, a namespace and a key
+     * Get metadata related to an object, a namespace and a key.
      *
      * @param  MetadatableInterface $object
      * @param  string               $namespace
      * @param  string               $key
+     *
      * @return IDCI\Bundle\SimpleMetadataBundle\Entity\Metadata | null
      */
     public function get(MetadatableInterface $object, $namespace, $key)
@@ -116,11 +117,12 @@ class MetadataManager
     }
 
     /**
-     * Get metadata value related to an object, a namespace and a key
+     * Get metadata value related to an object, a namespace and a key.
      *
      * @param  MetadatableInterface $object
      * @param  string               $namespace
      * @param  string               $key
+     *
      * @return string | null
      */
     public function getValue(MetadatableInterface $object, $namespace, $key)

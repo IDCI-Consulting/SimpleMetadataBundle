@@ -1,10 +1,8 @@
 <?php
 
 /**
- * 
  * @author:  Gabriel BONDAZ <gabriel.bondaz@idci-consulting.fr>
- * @license: GPL
- *
+ * @license: MIT
  */
 
 namespace IDCI\Bundle\SimpleMetadataBundle\Metadata;
@@ -12,14 +10,14 @@ namespace IDCI\Bundle\SimpleMetadataBundle\Metadata;
 interface MetadatableInterface
 {
     /**
-     * Get Id
+     * Returns the Id.
      *
      * @return string
      */
     public function getId();
 
     /**
-     * Get Metadatas
+     * Returns metadatas.
      *
      * @return array<Metadata>
      */

@@ -1,10 +1,8 @@
 <?php
 
 /**
- * 
  * @author:  Gabriel BONDAZ <gabriel.bondaz@idci-consulting.fr>
- * @license: GPL
- *
+ * @license: MIT
  */
 
 namespace IDCI\Bundle\SimpleMetadataBundle\Form\Type;
@@ -19,7 +17,7 @@ class RelatedToManyMetadataType extends AbstractType
     protected $namespace;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param string $namespace
      */

@@ -1,10 +1,8 @@
 <?php
 
 /**
- * 
  * @author:  Gabriel BONDAZ <gabriel.bondaz@idci-consulting.fr>
- * @license: GPL
- *
+ * @license: MIT
  */
 
 namespace IDCI\Bundle\SimpleMetadataBundle\Metadata;
@@ -21,7 +19,7 @@ class MetadataSubscriber implements EventSubscriber
     protected $metadatableManager;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param 
      */
@@ -31,7 +29,7 @@ class MetadataSubscriber implements EventSubscriber
     }
 
     /**
-     * Get MetadatableManager
+     * Get MetadatableManager.
      *
      * @return MetadatableManager
      */
@@ -54,7 +52,7 @@ class MetadataSubscriber implements EventSubscriber
     }
 
     /**
-     * Process metadata
+     * Process metadata.
      *
      * @param MetadatableInterface $entity
      * @param EntityManager $entityManager

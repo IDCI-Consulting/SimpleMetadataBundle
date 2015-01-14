@@ -1,10 +1,8 @@
 <?php
 
 /**
- * 
  * @author:  Gabriel BONDAZ <gabriel.bondaz@idci-consulting.fr>
- * @license: GPL
- *
+ * @license: MIT
  */
 
 namespace IDCI\Bundle\SimpleMetadataBundle\Form\DataTransformer;
@@ -17,6 +15,7 @@ class ArrayToStringTransformer implements DataTransformerInterface
      * Transforms a string to array.
      *
      * @param string $str
+     *
      * @return array
      */
     public function transform($str)
@@ -29,9 +28,10 @@ class ArrayToStringTransformer implements DataTransformerInterface
     }
 
     /**
-     * Transforms an array to string
+     * Transforms an array to string.
      *
      * @param array $array
+     *
      * @return string
      */
     public function reverseTransform($array)

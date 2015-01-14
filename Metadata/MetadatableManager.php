@@ -1,10 +1,8 @@
 <?php
 
 /**
- * 
  * @author:  Gabriel BONDAZ <gabriel.bondaz@idci-consulting.fr>
- * @license: GPL
- *
+ * @license: MIT
  */
 
 namespace IDCI\Bundle\SimpleMetadataBundle\Metadata;
@@ -14,9 +12,10 @@ use IDCI\Bundle\SimpleMetadataBundle\Metadata\MetadatableInterface;
 class MetadatableManager
 {
     /**
-     * Get Object class name
+     * Get Object class name.
      *
      * @param MetadatableInterface $metadatable
+     *
      * @return string
      */
     public function getObjectClassName(MetadatableInterface $metadatable)
@@ -27,9 +26,10 @@ class MetadatableManager
     }
 
     /**
-     * Get Object id
+     * Get Object id.
      *
      * @param MetadatableInterface $metadatable
+     *
      * @return string
      */
     public function getObjectId(MetadatableInterface $metadatable)
@@ -38,9 +38,10 @@ class MetadatableManager
     }
 
     /**
-     * Generate hash
+     * Generate hash.
      *
      * @param MetadatableInterface $metadatable
+     *
      * @return string
      */
     public function generateHash(MetadatableInterface $metadatable)

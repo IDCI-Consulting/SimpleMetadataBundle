@@ -1,10 +1,8 @@
 <?php
 
 /**
- * 
  * @author:  Gabriel BONDAZ <gabriel.bondaz@idci-consulting.fr>
- * @license: GPL
- *
+ * @license: MIT
  */
 
 namespace IDCI\Bundle\SimpleMetadataBundle\Form\DataTransformer;
@@ -14,9 +12,10 @@ use Symfony\Component\Form\DataTransformerInterface;
 class JsonStringToArrayTransformer implements DataTransformerInterface
 {
     /**
-     * Transforms an array to string
+     * Transforms an array to string.
      *
      * @param string $array
+     *
      * @return string
      */
     public function transform($array)
@@ -32,6 +31,7 @@ class JsonStringToArrayTransformer implements DataTransformerInterface
      * Transforms a json string to array.
      *
      * @param string|array $json
+     *
      * @return array
      */
     public function reverseTransform($json)

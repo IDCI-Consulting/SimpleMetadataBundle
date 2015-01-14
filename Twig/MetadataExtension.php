@@ -20,7 +20,7 @@ class MetadataExtension extends \Twig_Extension
     protected $metadatableManager;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param MetadataManager $metadataManager
      */
@@ -31,7 +31,7 @@ class MetadataExtension extends \Twig_Extension
     }
 
     /**
-     * Get Metadata Object Manager
+     * Returns Metadata object manager.
      *
      * @return MetadataManager
      */
@@ -41,7 +41,7 @@ class MetadataExtension extends \Twig_Extension
     }
 
     /**
-     * Get Metadatable Object Manager
+     * Returns Metadatable object manager.
      *
      * @return MetadatableManager
      */
@@ -69,12 +69,13 @@ class MetadataExtension extends \Twig_Extension
     }
 
     /**
-     * metadata value
+     * Returns mtadata value
      *
      * @param  MetadatableInterface $object
      * @param  string               $namespace
      * @param  string               $key
-     * @return string | null        The metadata value
+     *
+     * @return string|null          The metadata value
      */
     public function metadata(MetadatableInterface $object, $namespace, $key)
     {
