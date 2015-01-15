@@ -25,7 +25,9 @@ IDCI\Bundle\SimpleMetadataBundle\Entity\Metadata:
         objectClassName:
             expose: true
             groups: [tms_rest.item]
+            serialized_name: objectClassName
 
         objectId:
             expose: true
             groups: [tms_rest.item]
+            serialized_name: objectId
