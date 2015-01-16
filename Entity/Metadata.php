@@ -268,15 +268,15 @@ class Metadata
     }
 
     /**
-     * Returns a Key/Value string.
+     * Returns a Namespace:Key string.
      *
      * @return string
      */
-    public function getKeyValue()
+    public function getFullKey()
     {
-        return sprintf('%s/%s',
-            $this->getKey(),
-            $this->getValue()
+        return sprintf('%s:%s',
+            $this->getNamespace(),
+            $this->getKey()
         );
     }
 }
