@@ -12,11 +12,16 @@ use IDCI\Bundle\SimpleMetadataBundle\Metadata\MetadatableInterface;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="metadata", indexes={
- *     @ORM\Index(name="metadata_search", columns={"namespace", "_key"}),
- *     @ORM\Index(name="metadata_hash", columns={"hash"}),
- *     @ORM\Index(name="metadata_object", columns={"object_class_name", "object_id"})
- * })
+ * @ORM\Table(name="metadata", 
+ *     indexes={
+ *          @ORM\Index(name="metadata_search", columns={"namespace", "_key"}),
+ *          @ORM\Index(name="metadata_hash", columns={"hash"}),
+ *          @ORM\Index(name="metadata_object", columns={"object_class_name", "object_id"})
+ *      },
+ *      uniqueConstraints={
+ *          @ORM\UniqueConstraint(name="metadata_unique", columns={"hash", "namespace", "_key"})
+ *      }
+ * )
  */
 class Metadata
 {
