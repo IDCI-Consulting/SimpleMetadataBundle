@@ -44,6 +44,7 @@ class MetadataSubscriber implements EventSubscriber
     public function getSubscribedEvents()
     {
         return array(
+            'postLoad',
             'postPersist',
             'postUpdate',
             // Already manage with the cascade={"all"} on the ManyToMany relation
@@ -60,16 +61,30 @@ class MetadataSubscriber implements EventSubscriber
     protected function processMetadata(MetadatableInterface $entity, EntityManager $entityManager)
     {
         foreach ($entity->getMetadatas() as $metadata) {
-            if($metadata instanceof Metadata) {
+            if ($metadata instanceof Metadata) {
                 $metadata
                     ->setHash($this->getMetadatableManager()->generateHash($entity))
                     ->setObjectClassName($this->getMetadatableManager()->getObjectClassName($entity))
                     ->setObjectId($this->getMetadatableManager()->getObjectId($entity))
+                    ->setObject($entity)
                 ;
                 $entityManager->persist($metadata);
             }
         }
         $entityManager->flush();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function postLoad(LifecycleEventArgs $args)
+    {
+        $entity = $args->getEntity();
+        if ($entity instanceof MetadatableInterface) {
+            foreach ($entity->getMetadatas() as $metadata) {
+                $metadata->setObject($entity);
+            }
+        }
     }
 
     /**
@@ -81,6 +96,7 @@ class MetadataSubscriber implements EventSubscriber
         if ($entity instanceof MetadatableInterface) {
             $this->processMetadata($entity, $args->getEntityManager());
         }
+
     }
 
     /**
