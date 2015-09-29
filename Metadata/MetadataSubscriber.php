@@ -21,7 +21,7 @@ class MetadataSubscriber implements EventSubscriber
     /**
      * Constructor.
      *
-     * @param 
+     * @param MetadatableManager $metadatableManager
      */
     public function __construct(MetadatableManager $metadatableManager)
     {
@@ -60,6 +60,10 @@ class MetadataSubscriber implements EventSubscriber
      */
     protected function processMetadata(MetadatableInterface $entity, EntityManager $entityManager)
     {
+        if (null === $entity->getMetadatas()) {
+            return;
+        }
+
         foreach ($entity->getMetadatas() as $metadata) {
             if ($metadata instanceof Metadata) {
                 $metadata
@@ -81,6 +85,10 @@ class MetadataSubscriber implements EventSubscriber
     {
         $entity = $args->getEntity();
         if ($entity instanceof MetadatableInterface) {
+            if (null === $entity->getMetadatas()) {
+                return;
+            }
+
             foreach ($entity->getMetadatas() as $metadata) {
                 $metadata->setObject($entity);
             }
