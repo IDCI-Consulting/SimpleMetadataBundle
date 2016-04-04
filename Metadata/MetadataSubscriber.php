@@ -9,6 +9,7 @@ namespace IDCI\Bundle\SimpleMetadataBundle\Metadata;
 
 use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Event\LifecycleEventArgs;
+use Doctrine\ORM\Event\OnFlushEventArgs;
 use Doctrine\ORM\EntityManager;
 use IDCI\Bundle\SimpleMetadataBundle\Entity\Metadata;
 use IDCI\Bundle\SimpleMetadataBundle\Metadata\MetadatableManager;
@@ -47,8 +48,7 @@ class MetadataSubscriber implements EventSubscriber
             'postLoad',
             'postPersist',
             'postUpdate',
-            // Already manage with the cascade={"all"} on the ManyToMany relation
-            //'postRemove'
+            'postRemove'
         );
     }
 
@@ -75,7 +75,6 @@ class MetadataSubscriber implements EventSubscriber
                 $entityManager->persist($metadata);
             }
         }
-        $entityManager->flush();
     }
 
     /**
@@ -103,8 +102,8 @@ class MetadataSubscriber implements EventSubscriber
         $entity = $args->getEntity();
         if ($entity instanceof MetadatableInterface) {
             $this->processMetadata($entity, $args->getEntityManager());
+            $entityManager->flush();
         }
-
     }
 
     /**
@@ -113,8 +112,22 @@ class MetadataSubscriber implements EventSubscriber
     public function postUpdate(LifecycleEventArgs $args)
     {
         $entity = $args->getEntity();
+
         if ($entity instanceof MetadatableInterface) {
             $this->processMetadata($entity, $args->getEntityManager());
+
+            $entityManager = $args->getEntityManager();
+            $uow = $entityManager->getUnitOfWork();
+
+            foreach ($uow->getScheduledCollectionUpdates() as $collectionUpdate) {
+                foreach ($collectionUpdate->getDeleteDiff() as $metadata) {
+                    if ($metadata instanceof Metadata) {
+                        $entityManager->remove($metadata);
+                    }
+                }
+            }
+
+            $entityManager->flush();
         }
     }
 
