@@ -100,8 +100,10 @@ class MetadataSubscriber implements EventSubscriber
     public function postPersist(LifecycleEventArgs $args)
     {
         $entity = $args->getEntity();
+        $entityManager = $args->getEntityManager();
+
         if ($entity instanceof MetadatableInterface) {
-            $this->processMetadata($entity, $args->getEntityManager());
+            $this->processMetadata($entity, $entityManager);
             $entityManager->flush();
         }
     }
@@ -112,13 +114,12 @@ class MetadataSubscriber implements EventSubscriber
     public function postUpdate(LifecycleEventArgs $args)
     {
         $entity = $args->getEntity();
+        $entityManager = $args->getEntityManager();
 
         if ($entity instanceof MetadatableInterface) {
-            $this->processMetadata($entity, $args->getEntityManager());
+            $this->processMetadata($entity, $entityManager);
 
-            $entityManager = $args->getEntityManager();
             $uow = $entityManager->getUnitOfWork();
-
             foreach ($uow->getScheduledCollectionUpdates() as $collectionUpdate) {
                 foreach ($collectionUpdate->getDeleteDiff() as $metadata) {
                     if ($metadata instanceof Metadata) {
