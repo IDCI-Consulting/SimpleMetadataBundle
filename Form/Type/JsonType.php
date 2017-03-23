@@ -10,7 +10,7 @@ namespace IDCI\Bundle\SimpleMetadataBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use IDCI\Bundle\SimpleMetadataBundle\Form\DataTransformer\JsonStringToArrayTransformer;
+use IDCI\Bundle\SimpleMetadataBundle\Form\DataTransformer\JsonToArrayTransformer;
 
 class JsonType extends AbstractType
 {
@@ -19,7 +19,7 @@ class JsonType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $transformer = new JsonStringToArrayTransformer();
+        $transformer = new JsonToArrayTransformer();
         $builder->addModelTransformer($transformer);
     }
 
