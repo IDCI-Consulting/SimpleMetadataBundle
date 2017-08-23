@@ -9,7 +9,6 @@ namespace IDCI\Bundle\SimpleMetadataBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use IDCI\Bundle\SimpleMetadataBundle\Form\DataTransformer\JsonToArrayTransformer;
 
 class JsonType extends AbstractType
@@ -34,8 +33,18 @@ class JsonType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'json';
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @deprecated
+     */
+    public function getName()
+    {
+        return $this->getBlockPrefix();
     }
 }

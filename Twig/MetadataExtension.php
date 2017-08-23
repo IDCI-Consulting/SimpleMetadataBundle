@@ -1,11 +1,9 @@
 <?php
 
 /**
- * 
  * @author:  Gabriel BONDAZ <gabriel.bondaz@idci-consulting.fr>
  * @author:  Julien ANDRE <j.andre@trepia.fr>
- * @license: GPL
- *
+ * @license: MIT
  */
 
 namespace IDCI\Bundle\SimpleMetadataBundle\Twig;

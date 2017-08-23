@@ -29,7 +29,7 @@ class RelatedToOneMetadataType extends MetadataType
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolverInterface $resolver)
     {
         parent::setDefaultOptions($resolver);
         $resolver->setDefaults(array(
@@ -47,13 +47,33 @@ class RelatedToOneMetadataType extends MetadataType
 
     /**
      * {@inheritdoc}
+     *
+     * @deprecated
      */
-    public function getName()
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        $this->configureOptions($resolver);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getBlockPrefix()
     {
         if ($this->namespace) {
             return sprintf('related_to_one_metadata_%s', $this->namespace);
         }
 
         return 'related_to_one_metadata';
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @deprecated
+     */
+    public function getName()
+    {
+        return $this->getBlockPrefix();
     }
 }

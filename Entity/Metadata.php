@@ -12,7 +12,7 @@ use IDCI\Bundle\SimpleMetadataBundle\Metadata\MetadatableInterface;
 
 /**
  * @ORM\Entity(repositoryClass="IDCI\Bundle\SimpleMetadataBundle\Entity\Repository\MetadataRepository")
- * @ORM\Table(name="metadata", 
+ * @ORM\Table(name="metadata",
  *     indexes={
  *          @ORM\Index(name="metadata_search", columns={"namespace", "_key"}),
  *          @ORM\Index(name="metadata_hash", columns={"hash"}),
@@ -88,10 +88,7 @@ class Metadata
      */
     public function __toString()
     {
-        return sprintf('%s: %s', 
-            $this->getKey(),
-            $this->getValue()
-        );
+        return sprintf('%s: %s', $this->getKey(), $this->getValue());
     }
 
     /**
@@ -241,7 +238,7 @@ class Metadata
     /**
      * Get objectClassName.
      *
-     * @return string 
+     * @return string
      */
     public function getObjectClassName()
     {
@@ -279,9 +276,6 @@ class Metadata
      */
     public function getFullKey()
     {
-        return sprintf('%s:%s',
-            $this->getNamespace(),
-            $this->getKey()
-        );
+        return sprintf('%s:%s', $this->getNamespace(), $this->getKey());
     }
 }

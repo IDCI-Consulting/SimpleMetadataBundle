@@ -30,7 +30,15 @@ class RelatedToManyMetadataType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function getParent()
+    {
+        return 'collection';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function configureOptions(OptionsResolverInterface $resolver)
     {
         $resolver
             ->setDefaults(array(
@@ -45,7 +53,7 @@ class RelatedToManyMetadataType extends AbstractType
                 )
             ))
             ->setNormalizers(array(
-                'options' => function(Options $options, $value) {
+                'options' => function (Options $options, $value) {
                     return array_merge($value, array(
                         'required' => false,
                         'namespace' => $this->namespace
@@ -57,21 +65,33 @@ class RelatedToManyMetadataType extends AbstractType
 
     /**
      * {@inheritdoc}
+     *
+     * @deprecated
      */
-    public function getParent()
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        return 'collection';
+        $this->configureOptions($resolver);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         if ($this->namespace) {
             return sprintf('related_to_many_metadata_%s', $this->namespace);
         }
 
         return 'related_to_many_metadata';
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @deprecated
+     */
+    public function getName()
+    {
+        return $this->getBlockPrefix();
     }
 }

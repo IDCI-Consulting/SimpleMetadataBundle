@@ -37,5 +37,3 @@ class JsonToArrayTransformer implements DataTransformerInterface
         return null === $decoded ? $value : $decoded;
     }
 }
-
-

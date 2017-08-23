@@ -32,16 +32,6 @@ class MetadataType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {
-        $resolver->setDefaults(array(
-            'fields' => array()
-        ));
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function getParent()
     {
         return 'form';
@@ -50,8 +40,38 @@ class MetadataType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function configureOptions(OptionsResolverInterface $resolver)
+    {
+        $resolver->setDefaults(array(
+            'fields' => array()
+        ));
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @deprecated
+     */
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        $this->configureOptions($resolver);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getBlockPrefix()
     {
         return 'metadata';
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @deprecated
+     */
+    public function getName()
+    {
+        return $this->getBlockPrefix();
     }
 }

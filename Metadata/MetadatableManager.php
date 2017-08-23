@@ -46,10 +46,6 @@ class MetadatableManager
      */
     public function generateHash(MetadatableInterface $metadatable)
     {
-        return md5(sprintf('%s - %s',
-            $this->getObjectClassName($metadatable),
-            $metadatable->getId()
-        ));
+        return md5(sprintf('%s - %s', $this->getObjectClassName($metadatable), $metadatable->getId()));
     }
 }
-

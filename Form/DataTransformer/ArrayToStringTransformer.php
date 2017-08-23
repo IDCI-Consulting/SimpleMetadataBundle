@@ -39,5 +39,3 @@ class ArrayToStringTransformer implements DataTransformerInterface
         return json_encode($array);
     }
 }
-
-

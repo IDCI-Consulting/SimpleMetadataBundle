@@ -148,7 +148,7 @@ class MetadataSubscriber implements EventSubscriber
                 ))
             ;
 
-            foreach($metadatas as $metadata) {
+            foreach ($metadatas as $metadata) {
                 $entityManager->remove($metadata);
             }
 

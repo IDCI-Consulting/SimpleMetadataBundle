@@ -40,7 +40,7 @@ class MetadataType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver
             ->setDefaults(array(
@@ -57,9 +57,29 @@ class MetadataType extends AbstractType
 
     /**
      * {@inheritdoc}
+     *
+     * @deprecated
+     */
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        $this->configureOptions($resolver);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getBlockPrefix()
+    {
+        return 'idci_bundle_simplemetadatabundle_metadatatype';
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @deprecated
      */
     public function getName()
     {
-        return 'idci_bundle_simplemetadatabundle_metadatatype';
+        return $this->getBlockPrefix();
     }
 }

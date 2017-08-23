@@ -29,8 +29,7 @@ class MetadataRepository extends EntityRepository
         array $metadata,
         $alias = 'metadata',
         $operator = 'eq'
-    )
-    {
+    ) {
         $qb->join($join, $alias);
 
         foreach ($metadata as $key => $data) {

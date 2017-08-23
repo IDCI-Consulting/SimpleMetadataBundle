@@ -69,12 +69,13 @@ EOT
                         'id' => $metadata->getObjectId()
                     ))
                 ;
-            } catch(\Exception $e) {
+            } catch (\Exception $e) {
                 $object = null;
             }
 
             if (null === $object) {
-                $output->writeln(sprintf('<info>Metadata %d has no associated object [%s, %d]</info>',
+                $output->writeln(sprintf(
+                    '<info>Metadata %d has no associated object [%s, %d]</info>',
                     $metadata->getId(),
                     $metadata->getObjectClassName(),
                     $metadata->getObjectId()
@@ -91,7 +92,8 @@ EOT
 
         $timeEnd = microtime(true);
         $time = $timeEnd - $timeStart;
-        $output->writeln(sprintf('<comment>End of the Metadata Cleaning [%d sec] %d metadatas processed, %d metadatas removed, %d metadatas untouched</comment>',
+        $output->writeln(sprintf(
+            '<comment>End of the Metadata Cleaning [%d sec] %d metadatas processed, %d metadatas removed, %d metadatas untouched</comment>',
             $time,
             $count,
             $rcount,
