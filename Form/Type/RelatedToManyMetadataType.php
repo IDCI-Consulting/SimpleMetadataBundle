@@ -9,6 +9,7 @@ namespace IDCI\Bundle\SimpleMetadataBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use IDCI\Bundle\SimpleMetadataBundle\Form\MetadataType;
 
@@ -31,21 +32,27 @@ class RelatedToManyMetadataType extends AbstractType
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $resolver->setDefaults(array(
-            'type' => 'related_to_one_metadata',
-            'options' => array(
-                'required' => false,
-                'namespace' => $this->namespace
-            ),
-            'allow_add' => true,
-            'allow_delete' => true,
-            'by_reference' => false,
-            'cascade_validation' => true,
-            'attr' => array(
-                'class' => 'idci_metadata__related_to_many_metadata',
-                'data-namespace' => $this->namespace
-            )
-        ));
+        $resolver
+            ->setDefaults(array(
+                'type' => 'related_to_one_metadata',
+                'allow_add' => true,
+                'allow_delete' => true,
+                'by_reference' => false,
+                'cascade_validation' => true,
+                'attr' => array(
+                    'class' => 'idci_metadata__related_to_many_metadata',
+                    'data-namespace' => $this->namespace
+                )
+            ))
+            ->setNormalizers(array(
+                'options' => function(Options $options, $value) {
+                    return array_merge($value, array(
+                        'required' => false,
+                        'namespace' => $this->namespace
+                    ));
+                }
+            ))
+        ;
     }
 
     /**

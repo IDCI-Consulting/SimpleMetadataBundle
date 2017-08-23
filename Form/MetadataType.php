@@ -26,8 +26,15 @@ class MetadataType extends AbstractType
 
         $builder
             ->add('key')
-            ->add('value')
         ;
+
+        if (!$options['hide_value_field']) {
+            $builder->add('value');
+        } else {
+            $builder->add('value', 'hidden', array(
+                'data' => $options['hidden_value_default_data']
+            ));
+        }
     }
 
     /**
@@ -37,11 +44,14 @@ class MetadataType extends AbstractType
     {
         $resolver
             ->setDefaults(array(
-                'data_class' => 'IDCI\Bundle\SimpleMetadataBundle\Entity\Metadata'
+                'data_class'                => 'IDCI\Bundle\SimpleMetadataBundle\Entity\Metadata',
+                'hide_value_field'          => false,
+                'hidden_value_default_data' => true
             ))
             ->setOptional(array(
                 'namespace'
             ))
+            ->setAllowedTypes('hide_value_field', array('bool'))
         ;
     }
 
