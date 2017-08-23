@@ -10,6 +10,7 @@ namespace IDCI\Bundle\SimpleMetadataBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\Options;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use IDCI\Bundle\SimpleMetadataBundle\Form\MetadataType;
 
@@ -37,8 +38,10 @@ class RelatedToManyMetadataType extends AbstractType
 
     /**
      * {@inheritdoc}
+     *
+     * @deprecated
      */
-    public function configureOptions(OptionsResolverInterface $resolver)
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver
             ->setDefaults(array(
@@ -54,6 +57,10 @@ class RelatedToManyMetadataType extends AbstractType
             ))
             ->setNormalizers(array(
                 'options' => function (Options $options, $value) {
+                    if (null === $value) {
+                        $value = array();
+                    }
+
                     return array_merge($value, array(
                         'required' => false,
                         'namespace' => $this->namespace
@@ -61,16 +68,6 @@ class RelatedToManyMetadataType extends AbstractType
                 }
             ))
         ;
-    }
-
-    /**
-     * {@inheritdoc}
-     *
-     * @deprecated
-     */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {
-        $this->configureOptions($resolver);
     }
 
     /**

@@ -8,6 +8,7 @@
 namespace IDCI\Bundle\SimpleMetadataBundle\Form\Type;
 
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use IDCI\Bundle\SimpleMetadataBundle\Metadata\MetadataManager;
 use IDCI\Bundle\SimpleMetadataBundle\Form\MetadataType;
@@ -28,8 +29,10 @@ class RelatedToOneMetadataType extends MetadataType
 
     /**
      * {@inheritdoc}
+     *
+     * @deprecated
      */
-    public function configureOptions(OptionsResolverInterface $resolver)
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         parent::setDefaultOptions($resolver);
         $resolver->setDefaults(array(
@@ -43,16 +46,6 @@ class RelatedToOneMetadataType extends MetadataType
         if ($this->namespace) {
             $resolver->setDefaults(array('namespace' => $this->namespace));
         }
-    }
-
-    /**
-     * {@inheritdoc}
-     *
-     * @deprecated
-     */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {
-        $this->configureOptions($resolver);
     }
 
     /**

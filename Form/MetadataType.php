@@ -9,6 +9,7 @@ namespace IDCI\Bundle\SimpleMetadataBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class MetadataType extends AbstractType
@@ -39,8 +40,10 @@ class MetadataType extends AbstractType
 
     /**
      * {@inheritdoc}
+     *
+     * @deprecated
      */
-    public function configureOptions(OptionsResolver $resolver)
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver
             ->setDefaults(array(
@@ -53,16 +56,6 @@ class MetadataType extends AbstractType
             ))
             ->setAllowedTypes('hide_value_field', array('bool'))
         ;
-    }
-
-    /**
-     * {@inheritdoc}
-     *
-     * @deprecated
-     */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {
-        $this->configureOptions($resolver);
     }
 
     /**
