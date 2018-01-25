@@ -8,11 +8,8 @@
 namespace IDCI\Bundle\SimpleMetadataBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\Options;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use IDCI\Bundle\SimpleMetadataBundle\Form\MetadataType;
 
 class RelatedToManyMetadataType extends AbstractType
 {
@@ -52,8 +49,8 @@ class RelatedToManyMetadataType extends AbstractType
                 'cascade_validation' => true,
                 'attr' => array(
                     'class' => 'idci_metadata__related_to_many_metadata',
-                    'data-namespace' => $this->namespace
-                )
+                    'data-namespace' => $this->namespace,
+                ),
             ))
             ->setNormalizers(array(
                 'options' => function (Options $options, $value) {
@@ -63,9 +60,9 @@ class RelatedToManyMetadataType extends AbstractType
 
                     return array_merge($value, array(
                         'required' => false,
-                        'namespace' => $this->namespace
+                        'namespace' => $this->namespace,
                     ));
-                }
+                },
             ))
         ;
     }

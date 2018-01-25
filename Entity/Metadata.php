@@ -26,7 +26,7 @@ use IDCI\Bundle\SimpleMetadataBundle\Metadata\MetadatableInterface;
 class Metadata
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(type="integer")
      * @ORM\Id
@@ -82,7 +82,7 @@ class Metadata
     private $object;
 
     /**
-     * toString
+     * toString.
      *
      * @return string
      */
@@ -118,7 +118,7 @@ class Metadata
     /**
      * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {

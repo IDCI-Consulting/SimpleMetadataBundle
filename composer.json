@@ -3,7 +3,7 @@
     "type": "symfony-bundle",
     "description": "Symfony SimpleMetadataBundle",
     "keywords": ["metadata", "form"],
-    "license": "GPL-3.0+",
+    "license": "GPL-3.0-or-later",
     "authors": [
         {
             "name": "Gabriel Bondaz",

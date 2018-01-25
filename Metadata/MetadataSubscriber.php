@@ -9,11 +9,8 @@ namespace IDCI\Bundle\SimpleMetadataBundle\Metadata;
 
 use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Event\LifecycleEventArgs;
-use Doctrine\ORM\Event\OnFlushEventArgs;
 use Doctrine\ORM\EntityManager;
 use IDCI\Bundle\SimpleMetadataBundle\Entity\Metadata;
-use IDCI\Bundle\SimpleMetadataBundle\Metadata\MetadatableManager;
-use IDCI\Bundle\SimpleMetadataBundle\Metadata\MetadatableInterface;
 
 class MetadataSubscriber implements EventSubscriber
 {
@@ -48,7 +45,7 @@ class MetadataSubscriber implements EventSubscriber
             'postLoad',
             'postPersist',
             'postUpdate',
-            'postRemove'
+            'postRemove',
         );
     }
 
@@ -56,7 +53,7 @@ class MetadataSubscriber implements EventSubscriber
      * Process metadata.
      *
      * @param MetadatableInterface $entity
-     * @param EntityManager $entityManager
+     * @param EntityManager        $entityManager
      */
     protected function processMetadata(MetadatableInterface $entity, EntityManager $entityManager)
     {
@@ -144,7 +141,7 @@ class MetadataSubscriber implements EventSubscriber
             $metadatas = $entityManager
                 ->getRepository('IDCISimpleMetadataBundle:Metadata')
                 ->findBy(array(
-                    'hash' => $this->getMetadatableManager()->generateHash($entity)
+                    'hash' => $this->getMetadatableManager()->generateHash($entity),
                 ))
             ;
 

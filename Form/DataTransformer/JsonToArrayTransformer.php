@@ -17,7 +17,7 @@ class JsonToArrayTransformer implements DataTransformerInterface
     public function transform($value)
     {
         if (null === $value) {
-            return "";
+            return '';
         }
 
         if (is_array($value)) {

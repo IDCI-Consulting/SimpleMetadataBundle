@@ -13,7 +13,7 @@ use Doctrine\ORM\QueryBuilder;
 class MetadataRepository extends EntityRepository
 {
     /**
-     * Find by metadata query builder
+     * Find by metadata query builder.
      *
      * @param QueryBuilder $qb
      * @param string       $join
@@ -39,7 +39,7 @@ class MetadataRepository extends EntityRepository
                 $itemOperator = $operator;
 
                 if (is_array($value)) {
-                    $value        = $value['value'];
+                    $value = $value['value'];
                     $itemOperator = $value['operator'];
                 }
 
@@ -48,7 +48,7 @@ class MetadataRepository extends EntityRepository
                     array($qb->expr(), $itemOperator),
                     array(
                         sprintf('%s.%s', $alias, $field),
-                        sprintf(':%s', $parameterName)
+                        sprintf(':%s', $parameterName),
                     )
                 ));
 

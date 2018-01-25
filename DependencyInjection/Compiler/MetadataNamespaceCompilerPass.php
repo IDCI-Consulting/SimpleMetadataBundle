@@ -9,7 +9,6 @@ namespace IDCI\Bundle\SimpleMetadataBundle\DependencyInjection\Compiler;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
-use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\DependencyInjection\DefinitionDecorator;
 
 class MetadataNamespaceCompilerPass implements CompilerPassInterface

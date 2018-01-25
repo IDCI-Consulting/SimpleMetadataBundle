@@ -9,7 +9,6 @@ namespace IDCI\Bundle\SimpleMetadataBundle\Command;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -66,7 +65,7 @@ EOT
                 $object = $entityManager
                     ->getRepository($metadata->getObjectClassName())
                     ->findOneBy(array(
-                        'id' => $metadata->getObjectId()
+                        'id' => $metadata->getObjectId(),
                     ))
                 ;
             } catch (\Exception $e) {
@@ -84,10 +83,10 @@ EOT
                 if ($input->getOption('force')) {
                     $entityManager->remove($metadata);
                     $entityManager->flush();
-                    $rcount++;
+                    ++$rcount;
                 }
             }
-            $count++;
+            ++$count;
         }
 
         $timeEnd = microtime(true);
@@ -97,7 +96,7 @@ EOT
             $time,
             $count,
             $rcount,
-            ($count-$rcount)
+            ($count - $rcount)
         ));
     }
 }

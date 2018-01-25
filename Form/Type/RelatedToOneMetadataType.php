@@ -7,10 +7,7 @@
 
 namespace IDCI\Bundle\SimpleMetadataBundle\Form\Type;
 
-use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use IDCI\Bundle\SimpleMetadataBundle\Metadata\MetadataManager;
 use IDCI\Bundle\SimpleMetadataBundle\Form\MetadataType;
 
 class RelatedToOneMetadataType extends MetadataType
@@ -39,8 +36,8 @@ class RelatedToOneMetadataType extends MetadataType
             'cascade_validation' => true,
             'attr' => array(
                 'class' => 'idci_metadata__related_to_one_metadata',
-                'data-namespace' => $this->namespace
-            )
+                'data-namespace' => $this->namespace,
+            ),
         ));
 
         if ($this->namespace) {

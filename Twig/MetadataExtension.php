@@ -67,13 +67,13 @@ class MetadataExtension extends \Twig_Extension
     }
 
     /**
-     * Returns mtadata value
+     * Returns mtadata value.
      *
-     * @param  MetadatableInterface $object
-     * @param  string               $namespace
-     * @param  string               $key
+     * @param MetadatableInterface $object
+     * @param string               $namespace
+     * @param string               $key
      *
-     * @return string|null          The metadata value
+     * @return string|null The metadata value
      */
     public function metadata(MetadatableInterface $object, $namespace, $key)
     {

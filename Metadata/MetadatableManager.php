@@ -7,8 +7,6 @@
 
 namespace IDCI\Bundle\SimpleMetadataBundle\Metadata;
 
-use IDCI\Bundle\SimpleMetadataBundle\Metadata\MetadatableInterface;
-
 class MetadatableManager
 {
     /**
