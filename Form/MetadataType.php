@@ -8,6 +8,7 @@
 namespace IDCI\Bundle\SimpleMetadataBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type as Types;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -22,7 +23,7 @@ class MetadataType extends AbstractType
         if (!isset($options['namespace'])) {
             $builder->add('namespace');
         } else {
-            $builder->add('namespace', 'hidden', array('data' => $options['namespace']));
+            $builder->add('namespace', Types\HiddenType::class, array('data' => $options['namespace']));
         }
 
         $builder
@@ -32,7 +33,7 @@ class MetadataType extends AbstractType
         if (!$options['hide_value_field']) {
             $builder->add('value');
         } else {
-            $builder->add('value', 'hidden', array(
+            $builder->add('value', Types\HiddenType::class, array(
                 'data' => $options['hidden_value_default_data'],
             ));
         }

@@ -8,6 +8,7 @@
 namespace IDCI\Bundle\SimpleMetadataBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type as Types;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -31,7 +32,7 @@ class RelatedToManyMetadataType extends AbstractType
      */
     public function getParent()
     {
-        return 'collection';
+        return Types\CollectionType::class;
     }
 
     /**

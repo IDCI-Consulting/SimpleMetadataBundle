@@ -8,6 +8,7 @@
 namespace IDCI\Bundle\SimpleMetadataBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type as Types;
 use Symfony\Component\Form\FormBuilderInterface;
 use IDCI\Bundle\SimpleMetadataBundle\Form\DataTransformer\JsonToArrayTransformer;
 
@@ -27,7 +28,7 @@ class JsonType extends AbstractType
      */
     public function getParent()
     {
-        return 'textarea';
+        return Types\TextareaType::class;
     }
 
     /**

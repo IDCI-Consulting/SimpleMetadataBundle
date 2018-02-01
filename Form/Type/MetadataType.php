@@ -8,6 +8,7 @@
 namespace IDCI\Bundle\SimpleMetadataBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type as Types;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -35,7 +36,7 @@ class MetadataType extends AbstractType
      */
     public function getParent()
     {
-        return 'form';
+        return Types\FormType::class;
     }
 
     /**
