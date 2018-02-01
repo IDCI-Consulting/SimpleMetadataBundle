@@ -42,7 +42,7 @@ class RelatedToManyMetadataType extends AbstractType
     {
         $resolver
             ->setDefaults(array(
-                'type' => 'related_to_one_metadata',
+                'entry_type' => RelatedToOneMetadataType::class,
                 'allow_add' => true,
                 'allow_delete' => true,
                 'by_reference' => false,
