@@ -60,10 +60,6 @@ class RelatedToOneMetadataType extends MetadataType
      */
     public function getBlockPrefix()
     {
-        if ($this->namespace) {
-            return sprintf('related_to_one_metadata_%s', $this->namespace);
-        }
-
         return 'related_to_one_metadata';
     }
 
@@ -74,6 +70,10 @@ class RelatedToOneMetadataType extends MetadataType
      */
     public function getName()
     {
-        return $this->getBlockPrefix();
+        if ($this->namespace) {
+            return sprintf('related_to_one_metadata_%s', $this->namespace);
+        }
+
+        return 'related_to_one_metadata';
     }
 }

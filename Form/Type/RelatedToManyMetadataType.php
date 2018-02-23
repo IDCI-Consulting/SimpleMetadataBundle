@@ -80,10 +80,6 @@ class RelatedToManyMetadataType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        if ($this->namespace) {
-            return sprintf('related_to_many_metadata_%s', $this->namespace);
-        }
-
         return 'related_to_many_metadata';
     }
 
@@ -94,6 +90,10 @@ class RelatedToManyMetadataType extends AbstractType
      */
     public function getName()
     {
-        return $this->getBlockPrefix();
+        if ($this->namespace) {
+            return sprintf('related_to_many_metadata_%s', $this->namespace);
+        }
+
+        return 'related_to_many_metadata';
     }
 }
