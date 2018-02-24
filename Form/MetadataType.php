@@ -50,9 +50,7 @@ class MetadataType extends AbstractType
                 'hide_value_field' => false,
                 'hidden_value_default_data' => true,
             ))
-            ->setOptional(array(
-                'namespace',
-            ))
+            ->setDefined('namespace')
             ->setAllowedTypes('hide_value_field', array('bool'))
         ;
     }

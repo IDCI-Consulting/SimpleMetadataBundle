@@ -28,7 +28,7 @@ services:
 
     idci_simple_metadata.subscriber:
         class: IDCI\Bundle\SimpleMetadataBundle\Metadata\MetadataSubscriber
-        arguments: [@idci_simple_metadata.metadatable_manager]
+        arguments: ["@idci_simple_metadata.metadatable_manager"]
         tags:
             - { name: doctrine.event_subscriber, connection: default }
 
@@ -40,13 +40,13 @@ services:
 
     idci_simple_metadata.metadata_manager:
         class: IDCI\Bundle\SimpleMetadataBundle\Metadata\MetadataManager
-        arguments: [@idci_simple_metadata.metadatable_manager, @doctrine.orm.entity_manager]
+        arguments: ["@idci_simple_metadata.metadatable_manager", "@doctrine.orm.entity_manager"]
 
 
     ## Twig Extensions ##
 
     idci_simple_metadata.twig.metadata_extension:
         class: IDCI\Bundle\SimpleMetadataBundle\Twig\MetadataExtension
-        arguments: [@idci_simple_metadata.metadata_manager, @idci_simple_metadata.metadatable_manager]
+        arguments: ["@idci_simple_metadata.metadata_manager", "@idci_simple_metadata.metadatable_manager"]
         tags:
             - { name: twig.extension }
