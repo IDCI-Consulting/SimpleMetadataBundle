@@ -52,15 +52,12 @@ class RelatedToManyMetadataType extends AbstractType
                     'data-namespace' => $this->namespace,
                 ),
             ))
-            ->setNormalizer('options', function (Options $options, $value) {
-                if (null === $value) {
-                    $value = array();
-                }
-
-                return array_merge($value, array(
-                    'required' => false,
-                    'namespace' => $this->namespace,
-                ));
+            ->setDefined('namespace')
+            ->setNormalizer('required', function (Options $options, $value) {
+                return false;
+            })
+            ->setNormalizer('namespace', function (Options $options, $value) {
+                return $this->namespace;
             })
         ;
     }

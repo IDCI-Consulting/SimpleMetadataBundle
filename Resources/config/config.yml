@@ -1,4 +1,3 @@
 twig:
-    form:
-        resources:
-            - 'IDCISimpleMetadataBundle:Form:fields.html.twig'
+    form_themes:
+        - 'IDCISimpleMetadataBundle:Form:fields.html.twig'
