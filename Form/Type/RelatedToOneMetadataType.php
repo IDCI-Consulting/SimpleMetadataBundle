@@ -9,9 +9,9 @@ namespace IDCI\Bundle\SimpleMetadataBundle\Form\Type;
 
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use IDCI\Bundle\SimpleMetadataBundle\Form\MetadataType as MetadataType;
+use IDCI\Bundle\SimpleMetadataBundle\Form\MetadataType as FormMetadataType;
 
-class RelatedToOneMetadataType extends MetadataType
+class RelatedToOneMetadataType extends FormMetadataType
 {
     protected $namespace;
 
