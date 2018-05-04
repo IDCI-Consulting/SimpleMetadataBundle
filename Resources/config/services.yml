@@ -1,52 +1,27 @@
 services:
-    # FormType
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
 
-    form.type.json:
-        class: IDCI\Bundle\SimpleMetadataBundle\Form\Type\JsonType
+    IDCI\Bundle\SimpleMetadataBundle\:
+        resource: '../../*'
+        exclude: '../../{Entity,Tests}'
+
+    IDCI\Bundle\SimpleMetadataBundle\Repository\:
+        resource: '../../Repository'
         tags:
-            - { name: form.type, alias: json }
-
-    form.type.metadata:
-        class: IDCI\Bundle\SimpleMetadataBundle\Form\Type\MetadataType
-        tags:
-            - { name: form.type, alias: metadata }
-
-    form.type.related_to_one_metadata:
-        class: IDCI\Bundle\SimpleMetadataBundle\Form\Type\RelatedToOneMetadataType
-        arguments: [null]
-        tags:
-            - { name: form.type, alias: related_to_one_metadata }
-
-    form.type.related_to_many_metadata:
-        class: IDCI\Bundle\SimpleMetadataBundle\Form\Type\RelatedToManyMetadataType
-        arguments: [null]
-        tags:
-            - { name: form.type, alias: related_to_many_metadata }
-
+            - {name: doctrine.repository_service}
 
     ## Doctrine Subscriber ##
 
-    idci_simple_metadata.subscriber:
-        class: IDCI\Bundle\SimpleMetadataBundle\Metadata\MetadataSubscriber
-        arguments: ["@idci_simple_metadata.metadatable_manager"]
+    IDCI\Bundle\SimpleMetadataBundle\Metadata\MetadataSubscriber:
         tags:
-            - { name: doctrine.event_subscriber, connection: default }
-
-
-    ## Manager ##
-
-    idci_simple_metadata.metadatable_manager:
-        class: IDCI\Bundle\SimpleMetadataBundle\Metadata\MetadatableManager
-
-    idci_simple_metadata.metadata_manager:
-        class: IDCI\Bundle\SimpleMetadataBundle\Metadata\MetadataManager
-        arguments: ["@idci_simple_metadata.metadatable_manager", "@doctrine.orm.entity_manager"]
-
+            - {name: doctrine.event_subscriber, connection: default}
 
     ## Twig Extensions ##
 
-    idci_simple_metadata.twig.metadata_extension:
-        class: IDCI\Bundle\SimpleMetadataBundle\Twig\MetadataExtension
-        arguments: ["@idci_simple_metadata.metadata_manager", "@idci_simple_metadata.metadatable_manager"]
+    IDCI\Bundle\SimpleMetadataBundle\Twig\MetadataExtension:
         tags:
-            - { name: twig.extension }
+            - {name: twig.extension}
+

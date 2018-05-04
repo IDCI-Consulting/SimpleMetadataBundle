@@ -7,9 +7,9 @@
 
 namespace IDCI\Bundle\SimpleMetadataBundle;
 
-use Symfony\Component\HttpKernel\Bundle\Bundle;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
 use IDCI\Bundle\SimpleMetadataBundle\DependencyInjection\Compiler\MetadataNamespaceCompilerPass;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class IDCISimpleMetadataBundle extends Bundle
 {

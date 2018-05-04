@@ -7,12 +7,12 @@
 
 namespace IDCI\Bundle\SimpleMetadataBundle\Form\Type;
 
+use IDCI\Bundle\SimpleMetadataBundle\Form\DataTransformer\ArrayToStringTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type as Types;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use IDCI\Bundle\SimpleMetadataBundle\Form\DataTransformer\ArrayToStringTransformer;
 
 class MetadataType extends AbstractType
 {
