@@ -28,7 +28,8 @@ class MetadataRepository extends EntityRepository
         $join,
         array $metadata,
         $alias = 'metadata',
-        $operator = 'eq'
+        $operator = 'eq',
+        $whereOperator = 'and'
     ) {
         $qb->join($join, $alias);
 
@@ -43,7 +44,7 @@ class MetadataRepository extends EntityRepository
                     $itemOperator = $value['operator'];
                 }
 
-                $parameterName = sprintf('%s_%s', $field, $key);
+                $parameterName = sprintf('%s_%s_%s', $alias, $field, $key);
                 $andX->add(call_user_func_array(
                     array($qb->expr(), $itemOperator),
                     array(
@@ -55,9 +56,10 @@ class MetadataRepository extends EntityRepository
                 $qb->setParameter($parameterName, $value);
             }
 
-            $qb->orWhere($andX);
+            call_user_func_array(array($qb, sprintf('%sWhere', $whereOperator)), array($andX));
         }
 
         return $qb;
     }
 }
+
