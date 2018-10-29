@@ -6,7 +6,7 @@
     {% set namespace = attr['data-namespace'] %}
     <script type="text/javascript">
         var metadataCollectionHolder_{{ namespace }} = $('.idci_metadata__related_to_many_metadata[data-namespace="{{ namespace }}"]');
-        var $addMetadataLink_{{ namespace }} = $('<a href="#" class="btn btn-default add_metadata">Add</a>');
+        var $addMetadataLink_{{ namespace }} = $('<a href="#" class="btn btn-default add_metadata">{% trans %}label.add{% endtrans %}</a>');
         var $metadataNewLink_{{ namespace }} = $('<div></div>').append($addMetadataLink_{{ namespace }});
 
         jQuery(document).ready(function() {
@@ -31,7 +31,7 @@
         }
 
         function addMetadataFormDeleteLink_{{ namespace }}($metadataFormDiv) {
-            var $removeFormA = $('<a href="#" class="btn btn-default">Delete</a>');
+            var $removeFormA = $('<a href="#" class="btn btn-default">{% trans %}label.delete{% endtrans %}</a>');
             $metadataFormDiv.append($removeFormA);
 
             $removeFormA.on('click', function(e) {
