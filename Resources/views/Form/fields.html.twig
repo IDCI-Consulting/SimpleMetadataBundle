@@ -4,34 +4,35 @@
     {% endspaceless %}
 
     {% set namespace = attr['data-namespace'] %}
+    {% set uniqueId = namespace~'_'~id %}
     <script type="text/javascript">
-        var metadataCollectionHolder_{{ namespace }} = $('.idci_metadata__related_to_many_metadata[data-namespace="{{ namespace }}"]');
-        var $addMetadataLink_{{ namespace }} = $('<a href="#" class="btn btn-default add_metadata">{% trans %}label.add{% endtrans %}</a>');
-        var $metadataNewLink_{{ namespace }} = $('<div></div>').append($addMetadataLink_{{ namespace }});
+        var metadataCollectionHolder_{{ uniqueId }} = $('#{{ id }}');
+        var $addMetadataLink_{{ uniqueId }} = $('<a id="{{ id }}" class="btn btn-default add_metadata">{% trans %}label.add{% endtrans %}</a>');
+        var $metadataNewLink_{{ uniqueId }} = $('<div id="{{ id }}"></div>').append($addMetadataLink_{{ uniqueId }});
 
         jQuery(document).ready(function() {
-            metadataCollectionHolder_{{ namespace }}.append($metadataNewLink_{{ namespace }});
+            metadataCollectionHolder_{{ uniqueId }}.append($metadataNewLink_{{ uniqueId }});
 
-            $addMetadataLink_{{ namespace }}.on('click', function(e) {
+            $addMetadataLink_{{ uniqueId }}.on('click', function(e) {
                 e.preventDefault();
-                addMetadataForm_{{ namespace }}(metadataCollectionHolder_{{ namespace }}, $metadataNewLink_{{ namespace }});
+                addMetadataForm_{{ uniqueId }}(metadataCollectionHolder_{{ uniqueId }}, $metadataNewLink_{{ uniqueId }});
             });
 
-            metadataCollectionHolder_{{ namespace }}.find('.idci_metadata__related_to_one_metadata').each(function() {
-                addMetadataFormDeleteLink_{{ namespace }}($(this));
+            metadataCollectionHolder_{{ uniqueId }}.find('.idci_metadata__related_to_one_metadata').each(function() {
+                addMetadataFormDeleteLink_{{ uniqueId }}($(this));
             });
         });
 
-        function addMetadataForm_{{ namespace }}(metadataCollectionHolder, $metadataNewLink) {
+        function addMetadataForm_{{ uniqueId }}(metadataCollectionHolder, $metadataNewLink) {
             var prototype = metadataCollectionHolder.attr('data-prototype');
             var newForm = prototype.replace(/__name__/g, metadataCollectionHolder.children().length);
             var $newFormDiv = $('<div></div>').append(newForm);
             $metadataNewLink.before($newFormDiv);
-            addMetadataFormDeleteLink_{{ namespace }}($newFormDiv);
+            addMetadataFormDeleteLink_{{ uniqueId }}($newFormDiv);
         }
 
-        function addMetadataFormDeleteLink_{{ namespace }}($metadataFormDiv) {
-            var $removeFormA = $('<a href="#" class="btn btn-default">{% trans %}label.delete{% endtrans %}</a>');
+        function addMetadataFormDeleteLink_{{ uniqueId }}($metadataFormDiv) {
+            var $removeFormA = $('<a class="btn btn-default">{% trans %}label.delete{% endtrans %}</a>');
             $metadataFormDiv.append($removeFormA);
 
             $removeFormA.on('click', function(e) {
