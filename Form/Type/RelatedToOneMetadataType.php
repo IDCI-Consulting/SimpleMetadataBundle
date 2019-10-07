@@ -33,7 +33,6 @@ class RelatedToOneMetadataType extends FormMetadataType
         parent::configureOptions($resolver);
 
         $resolver->setDefaults(array(
-            'cascade_validation' => true,
             'attr' => array(
                 'class' => 'idci_metadata__related_to_one_metadata',
                 'data-namespace' => $this->namespace,
