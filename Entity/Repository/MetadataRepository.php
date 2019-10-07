@@ -62,4 +62,3 @@ class MetadataRepository extends EntityRepository
         return $qb;
     }
 }
-
