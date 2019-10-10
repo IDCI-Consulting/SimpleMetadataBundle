@@ -46,7 +46,6 @@ class RelatedToManyMetadataType extends AbstractType
                 'allow_add' => true,
                 'allow_delete' => true,
                 'by_reference' => false,
-                'cascade_validation' => true,
                 'attr' => array(
                     'class' => 'idci_metadata__related_to_many_metadata',
                     'data-namespace' => $this->namespace,
