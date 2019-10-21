@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
 use IDCI\Bundle\SimpleMetadataBundle\Metadata\MetadatableInterface;
 
 /**
- * @ORM\Entity(repositoryClass="IDCI\Bundle\SimpleMetadataBundle\Entity\Repository\MetadataRepository")
+ * @ORM\Entity(repositoryClass="IDCI\Bundle\SimpleMetadataBundle\Repository\MetadataRepository")
  * @ORM\Table(name="metadata",
  *     indexes={
  *          @ORM\Index(name="metadata_search", columns={"namespace", "_key"}),
