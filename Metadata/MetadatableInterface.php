@@ -15,11 +15,4 @@ interface MetadatableInterface
      * @return string
      */
     public function getId();
-
-    /**
-     * Returns metadatas.
-     *
-     * @return array<Metadata>
-     */
-    public function getMetadatas();
 }

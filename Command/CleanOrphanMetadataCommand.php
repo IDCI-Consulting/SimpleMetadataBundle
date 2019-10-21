@@ -7,12 +7,12 @@
 
 namespace IDCI\Bundle\SimpleMetadataBundle\Command;
 
-use Symfony\Component\Console\Command\Command;
+use Doctrine\Bundle\DoctrineBundle\Command\Proxy\DoctrineCommandHelper;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use Doctrine\Bundle\DoctrineBundle\Command\Proxy\DoctrineCommandHelper;
 
 class CleanOrphanMetadataCommand extends ContainerAwareCommand
 {

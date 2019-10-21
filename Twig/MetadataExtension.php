@@ -8,34 +8,24 @@
 
 namespace IDCI\Bundle\SimpleMetadataBundle\Twig;
 
-use IDCI\Bundle\SimpleMetadataBundle\Metadata\MetadataManager;
-use IDCI\Bundle\SimpleMetadataBundle\Metadata\MetadatableManager;
 use IDCI\Bundle\SimpleMetadataBundle\Metadata\MetadatableInterface;
+use IDCI\Bundle\SimpleMetadataBundle\Metadata\MetadatableManager;
+use IDCI\Bundle\SimpleMetadataBundle\Repository\MetadataRepository;
 
 class MetadataExtension extends \Twig_Extension
 {
-    protected $metadataManager;
+    protected $metadataRepository;
     protected $metadatableManager;
 
     /**
      * Constructor.
      *
-     * @param MetadataManager $metadataManager
+     * @param MetadataRepository $metadataRepository
      */
-    public function __construct(MetadataManager $metadataManager, MetadatableManager $metadatableManager)
+    public function __construct(MetadataRepository $metadataRepository, MetadatableManager $metadatableManager)
     {
-        $this->metadataManager = $metadataManager;
+        $this->metadataRepository = $metadataRepository;
         $this->metadatableManager = $metadatableManager;
-    }
-
-    /**
-     * Returns Metadata object manager.
-     *
-     * @return MetadataManager
-     */
-    public function getMetadataManager()
-    {
-        return $this->metadataManager;
     }
 
     /**
@@ -77,6 +67,6 @@ class MetadataExtension extends \Twig_Extension
      */
     public function metadata(MetadatableInterface $object, $namespace, $key)
     {
-        return $this->getMetadataManager()->getValue($object, $namespace, $key);
+        return $this->metadataRepository->getValue($object, $namespace, $key);
     }
 }

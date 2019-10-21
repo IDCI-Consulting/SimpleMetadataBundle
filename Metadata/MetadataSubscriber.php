@@ -8,8 +8,8 @@
 namespace IDCI\Bundle\SimpleMetadataBundle\Metadata;
 
 use Doctrine\Common\EventSubscriber;
-use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\Event\LifecycleEventArgs;
 use IDCI\Bundle\SimpleMetadataBundle\Entity\Metadata;
 
 class MetadataSubscriber implements EventSubscriber
