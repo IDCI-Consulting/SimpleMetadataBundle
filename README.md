@@ -70,11 +70,14 @@ private $metadata;
 In this entity form type:
 
 ```php
+
+use IDCI\Bundle\SimpleMetadataBundle\Form\Type\RelatedToOneMetadataType;
+
 public function buildForm(FormBuilderInterface $builder, array $options)
 {
     $builder
         ...
-        ->add('metadata', 'related_to_one_metadata', array(
+        ->add('metadata', RelatedToOneMetadataType::class, array(
             'data' => $builder->getData()->getMetadata()
         ))
         ...
@@ -102,11 +105,14 @@ private $metadatas;
 In this entity form type:
 
 ```php
+
+use IDCI\Bundle\SimpleMetadataBundle\Form\Type\RelatedToManyMetadataType;
+
 public function buildForm(FormBuilderInterface $builder, array $options)
 {
     $builder
         ...
-        ->add('metadatas', 'related_to_many_metadata')
+        ->add('metadatas', RelatedToManyMetadataType::class)
         ...
     ;
 }
@@ -128,11 +134,14 @@ private $metadata;
 In this entity form type:
 
 ```php
+
+use IDCI\Bundle\SimpleMetadataBundle\Form\Type\MetadataType;
+
 public function buildForm(FormBuilderInterface $builder, array $options)
 {
     $builder
         ...
-        ->add('metadata', 'metadata')
+        ->add('metadata', MetadataType::class)
         ...
     ;
 }
@@ -146,9 +155,12 @@ The `metadata` form type accept a `fields` options
 ex:
 
 ```php
+
+use IDCI\Bundle\SimpleMetadataBundle\Form\Type\MetadataType;
+
     $builder
         ...
-        ->add('metadata', 'metadata', array(
+        ->add('metadata', MetadataType::class, array(
             'fields' => array(
                 'firstName' => array('text'),
                 'lastName' => array('text'),
